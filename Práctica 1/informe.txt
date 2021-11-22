@@ -1,0 +1,142 @@
+INFORME PRÁCTICA 1 – ALGORITMOS 
+
+AUTORES 
+
+Andrea Lama Muiño : a.lama1@udc.es 
+
+Santiago Julio Iglesias Portela : santiago.iglesias4@udc.es 
+
+Pablo Longueira Failde : pablo.longueira.failde@udc.es 
+
+Grupo 4.1 
+
+
+INTRODUCCIÓN  
+
+En esta práctica hemos implementado 3 algoritmos distintos que calculan el n-ésimo 
+término de la Sucesión de Fibonacci y comprobando de manera empírica la complejidad 
+computacional de cada uno.  
+
+Al algoritmo FIB1 se le aplica una progresión geométrica de razón 2 tomando como 
+referencia los valores 2, 4, 8, 16 y 32. De la misma manera, para FIB2 y FIB3, 
+las progresiones son de razón 10 y usan los valores 1.000, 10.000, 1.000.000 y 
+10.000.000 para tomar la referencia. 
+
+
+MEDICIÓN DE TIEMPOS PARA EL ALGORITMO FIB1(N)
+
+FIB1(N)       n           t(n)           SUB*          AJUS*         SOBRE*
+--------------------------------------------------------------------------------
+*              2       0.007330     0.00605785     0.00279981     0.00183250
+*              4       0.020600     0.01407008     0.00300550     0.00128750
+*              8       0.166540     0.07769214     0.00354501     0.00065055
+*             16       7.167960     1.55995694     0.00324783     0.00010937
+              32   16910.000000   800.89887299     0.00347168     0.00000394
+--------------------------------------------------------------------------------
+                                                   CTE=0.003214 
+--------------------------------------------------------------------------------
+
+SUB* = 1.1^n 
+AJUS* = (1+sqrt(5))/2 
+SOBRE* = 2^n 
+
+La cota subestimada diverge a medida que n aumenta, tendiendo a infinito. 
+La cota ajustada varía entre [0.00279981,0.00347168], con una aproximación de 
+esta en 0.003214. 
+Del mismo modo, la cota sobreestimada converge a medida que n aumenta, con lo que tiende a cero.
+La complejidad del primer algoritmo es exponencial, las cotas subestimada y 
+sobreestimada son estudiadas mediante f(n) = (1.1)^n y f(n) = 2^n, respectivamente.
+O=(φ^n); φ=(1+ √ 5)\2.
+_TIEMPOS MEDIDOS EN MICROSEGUNDOS(us)_
+ 
+MEDICIÓN DE TIEMPOS DEL ALGORITMO FIB2
+
+FIB2(N)       n           t(n)           SUB*          AJUS*         SOBRE*
+--------------------------------------------------------------------------------
+*           1000       3.181580       0.012666     0.00318158     0.00106053
+*          10000      30.839280       0.019458     0.00308393     0.00077098
+*         100000     307.656370       0.030766     0.00307656     0.00061531
+         1000000    3074.000000       0.048720     0.00307400     0.00051233
+        10000000   33003.000000       0.082900     0.00330030     0.00047147
+--------------------------------------------------------------------------------
+                                                   CTE=0.003143 
+--------------------------------------------------------------------------------
+
+SUB* = n^0.8 
+AJUS* = n 
+SOBRE* = n*log10(n) 
+
+La cota subestimada diverge a medida que n aumenta, tendiendo a infinito. 
+La cota ajustada varía entre [0.00318158,0.00330030], con una aproximación a 
+esta en 0.003143.
+A su vez, la cota sobreestimada converge a medida que n aumenta, con lo que tiende a cero. 
+La complejidad del segundo algoritmo es lineal, las cotas subestimada y 
+sobreestimada son estudiadas mediante f(n) = n^0.8 y f(n)=n*log(n), respectivamente.
+O = n.
+_TIEMPOS MEDIDOS EN MICROSEGUNDOS(us)_
+
+MEDICIÓN DE TIEMPOS DEL ALGORITMO FIB3
+
+FIB3(N)       n           t(n)           SUB*          AJUS*         SOBRE*
+--------------------------------------------------------------------------------
+*           1000       0.056310       0.032511     0.00815171     0.00178068
+*          10000       0.072680       0.036340     0.00789113     0.00072680
+*         100000       0.085060       0.038040     0.00738822     0.00026898
+*        1000000       0.100460       0.041013     0.00727154     0.00010046
+*       10000000       0.127650       0.048247     0.00791967     0.00004037
+--------------------------------------------------------------------------------
+                                                   CTE=0.007724 
+--------------------------------------------------------------------------------
+
+SUB* = sqrt(log10(n)) 
+AJUS* = log(n) 
+SOBRE* = n^0.5 
+
+La cota subestimada diverge a medida que n aumenta, tendiendo a infinito. 
+La cota ajustada varía entre [0.00815171,0.00791967], con una aproximación a 
+esta en 0.007724. A su vez, la cota sobreestimada converge a medida que n 
+aumenta, con lo que tiende a cero. 
+La complejidad del tercer algoritmo es logarítmica, las cotas subestimada y 
+sobreestimada son estudiadas mediante f(n) = √ log (n) y f(n) = n^(0.5), respectivamente.
+O = log(n).
+_TIEMPOS MEDIDOS EN MICROSEGUNDOS(us)_
+
+OBSERVACIONES 
+
+Previo a la medición de tiempos se crea la función test , para probar que las 
+diferentes implementaciones son correctas y los resultados son iguales para todo n introducido.
+
+Todas las mediciones de tiempos se han realizado en microsegundos.
+Como precondición para la medición de tiempos proponemos que si el tiempo de 
+ejecución es inferior a 500 microsegundos el algoritmos se repita k veces, 
+siendo esta k múltiplo de 10.
+
+En nuestro caso utilizamos k = 100.000 para una mejor precisión en los tiempos.
+Los asteriscos mostrados en la tabla de tiempos como (*) indican cuando el 
+algoritmo en esa iteración no supera un tiempo de ejecución de 500 microsegundos.
+
+Hallamos una anomalía en la cota subestimada de la última iteración del 
+algortimo fib1 ,donde además el propio algoritmo supera los 500 microsegundos 
+de ejecución, no sabemos el origen del fallo, suponemos que se debe a la 
+complejidad de dicho algoritmo.
+
+CONCLUSIÓN
+
+Como se puede observar la complejidad de fib3 es inferior a la de fib2 y 
+esta, a su vez, es menor que la de fib1. Una buena manera de observar esta 
+diferencia es que en las cinco interaciones del algoritmo fib3 el tiempo de 
+ejecución es inferior a 500 microsegundos y, en cambio, en fib2 solo tiene 3 
+ejecuciones por debajo de los 500 microsegundos con la misma progresión. El 
+algoritmo fib1 con 4 ejecuciones tiene una progresión mucho menor que la de razón 10. 
+
+
+CARACTERÍSTICAS DEL ORDENADOR
+    
+    
+    LAPTOP-CMSMGVD1
+    Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz   1.80 GHz
+    16,0 GB (15,9 GB usable)
+    Ubuntu 20.04.1 LTS 64 bits   ... versión de GNOME 3.36.3
+    
+    
+    

@@ -1,0 +1,266 @@
+INFORME PRÁCTICA 2 – ALGORITMOS 
+================================
+
+AUTORES 
+
+Andrea Lama Muiño : a.lama1@udc.es 
+
+Santiago Julio Iglesias Portela : santiago.iglesias4@udc.es 
+
+Pablo Longueira Failde : pablo.longueira.failde@udc.es 
+
+Grupo 4.1
+================================ 
+
+CARACTERÍSTICAS DEL ORDENADOR
+================================   
+    
+    Dell XPS 9570 2019
+    Intel® Core™ i7-8750H CPU @ 2.20GHz × 12 
+    16 GB RAM
+    Ubuntu 20.04 LTS Focal Fossa
+    
+
+INTRODUCCIÓN  
+================================
+
+En esta práctica hemos implementado 2 algortimos de ordenación diferentes que 
+dado un vector en orden ascendente,descendente y aleatorio de N números enteros,
+lo ordena correctamente.
+Después hallamos el tiempo de ejecución de cada algoritmo y empíricamente 
+obtenemos las cotas subestimada,ajustada y sobreestimada.
+
+Los algoritmos de ordenación son:
+	-Ordenación por insercción:
+	-Ordenación Shell:
+	
+Test - Ordenación por inserción
+================================
+	
+Inicialización aleatoria
+    [11 0 27 28 27 0 23 22 16 28 22 5 15 21 6 ]
+    Ordenado?: 0 
+    Ordenamos[0 0 5 6 11 15 16 21 22 22 23 27 27 28 28 ]
+    Ordenado?: 1 
+
+Inicialización descendente
+    [15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 ]
+    Ordenado?: 0 
+    Ordenamos[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ]
+    Ordenado?: 1 
+
+Inicialización ascendente
+    [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ]
+    ordenado?:1
+
+
+Test - Ordenación por shell
+===========================
+	
+Inicialización aleatoria
+    [20 27 21 -1 14 23 23 26 18 24 16 8 12 5 8 ]
+    Ordenado?: 0 
+    Ordenamos[-1 5 8 8 12 14 16 18 20 21 23 23 24 26 27 ]
+    Ordenado?: 1 
+
+Inicialización descendente
+    [15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 ]
+    Ordenado?: 0 
+    Ordenamos[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ]
+    Ordenado?: 1 
+
+Inicialización ascendente
+    [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ]
+ordenado?:1
+
+
+ANÁLISIS DE LOS ALGORITMOS
+================================
+================================
+Medición de tiempos - Inserción
+================================
+
+					
+Inicialización aleatoria
+
+       n             t(n)       t(n)/n^1.8         t(n)/n^2       t(n)/n^2.2
+       
+(*)  500        140.53200         0.001948         0.000562         0.000162
+    1000        592.00000         0.002357         0.000592         0.000149
+    2000       2207.00000         0.002523         0.000552         0.000121
+    4000       8826.00000         0.002898         0.000552         0.000105
+    8000      36023.00000         0.003396         0.000563         0.000093
+   16000     139408.00000         0.003775         0.000545         0.000079
+   32000     561780.00000         0.004368         0.000549         0.000069
+   
+La cota subestimada diverge a medida que n aumenta, tendiendo a infinito. 
+La cota ajustada varía entre [0.000562 ,0.000549], tendiendo aproximadamente a 0.0056. 
+Del mismo modo, la cota sobreestimada converge a medida que n aumenta,
+con lo que tiende a cero.
+La complejidad del algoritmo de inserción con inicialización aleatoria es 
+cuadrática, las cotas subestimada y sobreestimada son estudiadas 
+mediante t(n)/(n)^1.8 y t(n)/(n)^2.2, respectivamente como se 
+demuestra en las cabeceras de la tabla.Empíricamente obtenemos una complejidad O=n^2.
+
+_TIEMPOS MEDIDOS EN MICROSEGUNDOS(us)_
+
+Inicialización ascendente
+       n             t(n)       t(n)/n^0.8           t(n)/n       t(n)/n^1.2
+
+(*)  500          1.47400         0.010217         0.002948         0.000851
+(*) 1000          2.95100         0.011748         0.002951         0.000741
+(*) 2000          5.92100         0.013539         0.002961         0.000647
+(*) 4000         11.82900         0.015535         0.002957         0.000563
+(*) 8000         23.56800         0.017777         0.002946         0.000488
+(*)16000         47.80900         0.020712         0.002988         0.000431
+(*)32000         95.33300         0.023720         0.002979         0.000374
+
+La cota subestimada diverge a medida que n aumenta, tendiendo a infinito. 
+La cota ajustada varía entre [0.002948 ,0.002988], tendiendo aproximadamente a 0.02960... 
+Del mismo modo, la cota sobreestimada converge a medida que n aumenta, 
+con lo que tiende a cero.
+La complejidad del algoritmo de inserción con inicialización 
+ascendente es lineal, las cotas subestimada y sobreestimada son 
+estudiadas mediante t(n)/(n)^0.8 y t(n)/(n)^1.2 respectivamente, 
+como se demuestra en las cabeceras de la tabla.Empíricamente obtenemos 
+una complejidad O=n^1=n.
+
+_TIEMPOS MEDIDOS EN MICROSEGUNDOS(us)_
+
+Inicialización descendente
+       n             t(n)       t(n)/n^1.8         t(n)/n^2       t(n)/n^2.2
+
+(*)  500        275.49800         0.003819         0.001102         0.000318
+    1000       1113.00000         0.004431         0.001113         0.000280
+    2000       4432.00000         0.005067         0.001108         0.000242
+    4000      18006.00000         0.005912         0.001125         0.000214
+    8000      71351.00000         0.006727         0.001115         0.000185
+   16000     278897.00000         0.007551         0.001089         0.000157
+   32000    1110918.00000         0.008638         0.001085         0.000136
+
+
+La cota subestimada diverge a medida que n aumenta, tendiendo a infinito. 
+La cota ajustada varía entre [0.001085,0.001125], tendiendo aproximadamente a 
+0.001100. 
+Del mismo modo, la cota sobreestimada converge a medida que n aumenta, con 
+lo que tiende a cero.
+La complejidad del algoritmo de ordenación por inserción con inicialización 
+descendente es cuadrático, las cotas subestimada y sobreestimada son estudiadas 
+mediante t(n)/(n)^1.8 y t(n)/(n)^2.2 respectivamente, como se demuestra en las 
+cabeceras de la tabla.Empíricamente obtenemos una complejidad O=n^2.
+
+_TIEMPOS MEDIDOS EN MICROSEGUNDOS(us)_
+
+================================
+Medición de tiempos - Shell
+================================
+
+Inicialización aleatoria
+  
+       n             t(n)       t(n)/n^0.9       t(n)/n^1.2       t(n)/n^1.5
+
+(*)  500         50.22300         0.186995         0.028983         0.004492
+(*) 1000        115.16400         0.229782         0.028928         0.003642
+(*) 2000        261.18400         0.279267         0.028557         0.002920
+    4000        622.00000         0.356399         0.029602         0.002459
+    8000       1356.00000         0.416369         0.028090         0.001895
+   16000       3028.00000         0.498251         0.027303         0.001496
+   32000       7227.00000         0.637269         0.028365         0.001263
+
+La cota subestimada diverge a medida que n aumenta, tendiendo a infinito. 
+La cota ajustada varía entre [0.027303,0.029602], tendiendo aproximadamente a 0.02890. 
+Del mismo modo, la cota sobreestimada converge a medida que n aumenta, 
+con lo que tiende a cero.
+La complejidad del algoritmo de ordenación Shell es lineal, las cotas 
+subestimada y sobreestimada son estudiadas mediante t(n)/(n)^0.9 y t(n)/(n)^1.5 
+respectivamente, como se demuestra en las cabeceras de la tabla.Empíricamente 
+obtenemos una complejidad O=n^1.2 ~= n;
+
+_TIEMPOS MEDIDOS EN MICROSEGUNDOS(us)_
+
+Inicialización ascendente
+
+       n             t(n)      t(n)/n^0.95    t(n)/n*log(n)       t(n)/n^1.3
+
+(*)  500         13.37800         0.036506         0.009913         0.004147
+(*) 1000         29.68600         0.041933         0.009895         0.003737
+(*) 2000         65.35400         0.047785         0.009899         0.003341
+(*) 4000        144.05800         0.054523         0.009998         0.002991
+(*) 8000        314.75200         0.061664         0.010080         0.002654
+   16000        713.00000         0.072306         0.010600         0.002442
+   32000       1503.00000         0.078898         0.010426         0.002091
+
+
+La cota subestimada diverge a medida que n aumenta, tendiendo a infinito. 
+La cota ajustada varía entre [0.009895,0.010426], tendiendo aproximadamente a 
+0.009990. 
+Del mismo modo, la cota sobreestimada converge a medida que n aumenta, con lo 
+que tiende a cero.
+La complejidad del algoritmo de ordenación por inserción es cuadrático, las 
+cotas subestimada y sobreestimada son estudiadas mediante t(n)/(n)^0.85 y 
+t(n)/(n)^1.3, respectivamente como se demuestra en las cabeceras de la tabla.
+Empíricamente obtenemos una complejidad O=n*log(n);
+
+_TIEMPOS MEDIDOS EN MICROSEGUNDOS(us)_
+
+Inicialización descendente
+   
+       n             t(n)       t(n)/n^0.9  t(n)/n*log²(n)       t(n)/n^1.3
+
+(*)  500         19.38800         0.072187         0.004325         0.006010
+(*) 1000         42.62600         0.085050         0.004277         0.005366
+(*) 2000         93.84500         0.100342         0.004279         0.004798
+(*) 4000        204.37400         0.117104         0.004270         0.004244
+(*) 8000        444.28800         0.136422         0.004283         0.003747
+   16000        997.00000         0.164054         0.004462         0.003415
+   32000       2110.00000         0.186058         0.004406         0.002935
+
+
+La cota subestimada diverge a medida que n aumenta, tendiendo a infinito. 
+La cota ajustada varía entre [0.004270,0.004462], tendiendo aproximadamente 
+a 0.004300. 
+Del mismo modo, la cota sobreestimada converge a medida que n aumenta, con lo
+que tiende a cero.
+La complejidad del algoritmo de ordenación por inserción es cuadrático, 
+las cotas subestimada y sobreestimada son estudiadas mediante t(n)/(n)^0.9 
+y t(n)/(n)^1.3, respectivamente como se demuestra en las cabeceras de la tabla.
+Empíricamente obtenemos una complejidad O=n*log^2(n);
+
+_TIEMPOS MEDIDOS EN MICROSEGUNDOS(us)_
+
+OBSERVACIONES 
+================================
+    -Para mayor precisión se les aplica a ambos algortimos una progresión geométrica 
+    de razón 2^n desde 500 a 32000.
+    -Tiempo medido en microsegundos
+    -Las cabeceras de las tablas representan: n(nº elementos del vector),
+    t(n)(tiempo de ejecución), cotas subestimada, ajustada y sobreestimada 
+    respectivamente.
+    -Los asteriscos mostrados en la tabla de tiempos como (*) indican cuando el
+    algoritmo en esa iteración no supera un tiempo de ejecución de 500 microsegundos.
+    -Para ambos algoritmos en sus tres inicializaciones distintas aplicamos una 
+    k= 1000 para mayor precisión de tiempos.
+    -No se han encontrado anomalías notables en ninguno de los casos estudiados.
+		
+CONCLUSIÓN
+================================
+Tras comprobar las 3 inicializaciones diferentes en ambos algoritmos encontramos 
+la mas eficiente la descendente para el de ordenación Shell , aunque su 
+implementación y análisis  empírico es mas complicado que el de ordenación por 
+inserción. 
+
+Se ha ejecutado 3 veces cada caso para evitar posibles anomalías.
+Todas las cotas y complejidades han sido halladas empíricamente salvo el caso 
+propuesto para la inicializacion descendente en la ordenación por inserción.
+
+En cuanto al algortimo de ordenación por inserción no presenta gran dificultad 
+para hallar su complejidad y sus cotas, en cambio el de ordenación Shell es mas 
+complicado de implementar y de hallar su complejidad y sus cotas.
+
+En conclusión la ordenación por inserción es más sencilla de implementar y 
+estudiar pero menos eficiente que los tres casos de inicialización de la 
+ordenación Shell, una buena forma de ver dicha afirmación en las tablas es observando 
+el número de asteriscos que señalan cada iteración, dónde en la ordenación 
+shell hay más salvo el caso ascendente el cuál es mas eficiente el de inserción,
+pero en los casos "menos favorables" da mejores resultados el  Shell.
+

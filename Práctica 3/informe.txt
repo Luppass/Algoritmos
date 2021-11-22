@@ -1,0 +1,117 @@
+INFORME PRÁCTICA 3 - ALGORITMOS
+================================
+
+AUTORES
+
+Pablo Longueira Failde : pablo.longueira.failde@udc.es
+
+Santiago Julio Iglesias Portela : santiago.iglesias4@udc.es
+
+Andrea Lama Muiño : a.lama1@udc.es
+
+Grupo 4.1
+================================
+
+CARACTERÍSTICAS DEL ORDENADOR
+================================
+
+    Dell XPS 9570 2019
+    Intel® Core™ i7-8750H CPU @ 2.20GHz × 12 
+    16 GB RAM
+    Ubuntu 20.04 LTS Focal Fossa
+
+INTRODUCCIÓN
+================================
+
+En esta práctica hemos implementado dos algoritmos que dado un árbol binario 
+de búsqueda de números enteros, se encarga de insertar y buscar. 
+Después hallamos el tiempo de ejecución de cada algoritmo y empíricamente obtenemos
+la cota ajustada.
+
+Los algoritmos, por tanto serían:
+	-De búsqueda
+	-De inserción
+
+TESTS
+================================
+
+     n		      t_ins		   t_bus
+  8000              1153.00              1054.00 
+ 16000              3221.00              3161.00 
+ 32000              9443.00              8717.00 
+ 64000             22783.00             23626.00 
+128000             57706.00             55552.00 
+256000            146924.00            145231.00 
+
+
+ANÁLISIS DE LOS ALGORITMOS
+================================
+Medición de tiempos - Inserción
+================================
+
+Inserción de n elementos: 
+     n		    t	     t/n  	   t/n^1.4	 t/n^1.7
+  8000       1153.00       0.144125      0.00395825    0.00026704
+ 16000       3221.00       0.201313      0.00419008    0.00022961
+ 32000       9443.00       0.295094      0.00465479    0.00020718
+ 64000      22783.00       0.355984      0.00425558    0.00015385
+128000      57706.00       0.450828      0.00408439    0.00011994
+256000     146924.00       0.573922      0.00394055    0.00009399
+
+
+La cota subestimada tiende a infinito. La cota ajustada, varía entre [0.00394055,0.00465479 ], y tiende aproximadamente a 0.0042.
+La cota sobreestimada tiende a cero. 
+La complejidad del algoritmo de inserción es lineal, las cotas subestimadas y sobreestimadas son estudiadas mediante t(n)/n y t(n)/(n)^1.7 respectivamente,
+como se demuestra en las cabeceras de la taba. Empíricamente obtenemos una complejiadd de O=n^1.41 ~= n.
+
+_TIEMPOS MEDIDOS EN MICROSEGUNDOS (us)_
+
+ANÁLISIS DE LOS ALGORITMOS
+================================
+Medición de tiempos - Búsqueda
+================================
+
+Búsqueda de n elementos: 
+     n		    t	     t/n  	  t/n^1.41      t/n^1.7
+  8000       1086.00       0.135750      0.00340779    0.00025152
+ 16000       3095.00       0.193438      0.00365470    0.00022063
+ 32000       7978.00       0.249312      0.00354513    0.00017504
+ 64000      20608.00       0.322000      0.00344605    0.00013916
+128000      53585.00       0.418633      0.00337192    0.00011137
+256000     146864.00       0.573688      0.00347774    0.00009395
+
+La cota subestimada tiende a infinito. La cota ajustada, varía entre [0.00337192,0.00365470 ], y tiende aproximadamente 0.0034.
+La cota sobreestimada tiende a cero. 
+La complejidad del algoritmo de búsqueda es lineal, las cotas subestimadas y sobreestimadas son estudiadas mediante t(n)/n y t(n)/(n)^1.7 respectivamente,
+como se demuestra en las cabeceras de la tabla. Empíricamente obtenemos una complejidad de O = n^1.41 ~= n.
+
+_TIEMPOS MEDIDOS EN MICROSEGUNDOS (us)_
+
+OBSERVACIONES
+================================
+	
+	-Tiempo medido en microsegundos.
+	-Las cabeceras de las tablas representan: n(nº elementos del vector), t(n)          (tiempo de ejecución),
+	 cotas subestimada, ajustada y sobreestimada respectivamente.
+	-Los asteriscos mostrados en la tabla de tiempos como (*) 
+	 indicarían cuando el algoritmo en esa iteración no supera un tiempo de 
+	 ejecución de 500 microsegundos.En este estudio empírico de las 	
+	 complejidades no se han encontrado estos casos.  
+	-No se han encontrado anomalías notables en ninguno de los casos estudiados.
+	-Para mayor precisión se les aplica a ambos algoritmos una progresión          geométrica de razón 2^n desde
+	 8000 a 256000.
+	-Pese a no haber encontrado anomalías en los tiempos a partir de la ejecución          con n=32000 
+	 difieren del propuesto en el enunciado,esto es simplemente a modo de 
+	 comentario para anotar esta diferencia.
+
+CONCLUSIÓN
+================================
+Tras comprobar ambos algoritmos, encontramos una eficiencia muy similar en ambos , tanto en inserción como en búsqueda.
+Teóricamente tienen complejidades iguales para el caso de inserción/búsqueda en el caso medio se obtiene una O(log n) y como caso peor O(n).
+Una vez realizado este estudio comprobamos sus complejidades y obtenemos resultados similares entre ambos algoritmos. Viendo que las complejidades obtenidas son del orden
+de O(n) podríamos afirmar que estamos en los peores casos de inserción y búsqueda. Respecto a sus implementaciones ambas son recursivas y con similar dificultad a la hora de programar.
+
+Se ha ejecutado 3 veces cada caso para evitar posibles anomalías. 
+
+
+
